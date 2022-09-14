@@ -7,4 +7,5 @@ namespace app\common\parse;
 interface ParseInterface
 {
     public function parse(string $filePath): array;
+    public function extract(array $data): array;
 }
