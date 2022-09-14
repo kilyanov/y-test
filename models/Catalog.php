@@ -45,7 +45,7 @@ class Catalog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['markId', 'modelId', 'year', 'run', 'colorId', 'bodyTypeId', 'engineTypeId', 'transmissionId', 'gearTypeId', 'generation_id'], 'required'],
+            [['markId', 'modelId', 'year', 'run', 'colorId', 'bodyTypeId', 'engineTypeId', 'transmissionId', 'gearTypeId'], 'required'],
             [['markId', 'modelId', 'generationId', 'year', 'run', 'colorId', 'bodyTypeId', 'engineTypeId', 'transmissionId', 'gearTypeId', 'generation_id'], 'integer'],
             [['bodyTypeId'], 'exist', 'skipOnError' => true, 'targetClass' => BodyType::class, 'targetAttribute' => ['bodyTypeId' => 'id']],
             [['colorId'], 'exist', 'skipOnError' => true, 'targetClass' => Color::class, 'targetAttribute' => ['colorId' => 'id']],

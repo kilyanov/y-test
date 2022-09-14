@@ -32,7 +32,7 @@ class m220914_130950_create_catalog_table extends Migration
             'engineTypeId' => $this->integer()->notNull()->comment('Тип двигателя'),
             'transmissionId' => $this->integer()->notNull()->comment('Трансмиссия'),
             'gearTypeId' => $this->integer()->notNull()->comment('Тип двигателя'),
-            'generation_id' => $this->bigInteger()->notNull()->comment('Generation id'),
+            'generation_id' => $this->bigInteger()->null()->defaultValue(null)->comment('Generation id'),
         ]);
         $this->createIndex(
             'idx-markId-' . self::TABLE_NAME,

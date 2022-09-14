@@ -20,12 +20,20 @@ class XmlParse implements ParseInterface
         $converter = $fabric->makeConverter();
         $result = $converter->toArray();
 
-        return $result['auto-catalog'][IConverter::ELEMENTS]['offers'][IConverter::ELEMENTS]['offer'][IConverter::MULTIPLE];
+        return
+            empty($result['auto-catalog'][IConverter::ELEMENTS]['offers'][IConverter::ELEMENTS]['offer'][IConverter::MULTIPLE]) ?
+            [IConverter::ELEMENTS => $result['auto-catalog'][IConverter::ELEMENTS]['offers'][IConverter::ELEMENTS]['offer']] :
+            $result['auto-catalog'][IConverter::ELEMENTS]['offers'][IConverter::ELEMENTS]['offer'][IConverter::MULTIPLE];
     }
 
     public function extract(array $data): array
     {
-        return $data[IConverter::ELEMENTS];
+        $result = [];
+        foreach ($data[IConverter::ELEMENTS] as $k => $value) {
+            $result[$k] = array_key_exists(IConverter::VALUE, $value) ? $value[IConverter::VALUE] : null;
+        }
+
+        return $result;
     }
 
 }
